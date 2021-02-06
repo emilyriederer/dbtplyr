@@ -1,0 +1,82 @@
+version: 2
+
+macros:
+  - name: get_column_names
+    description: Returns string column names of relation passed
+    arguments:
+      - name: relation
+        type: 'Relation'
+        description: 'Relation passed with Jinja ref syntax'
+        
+  - name: get_matches
+    description: Returns list of strings matching provided regular expression
+    arguments:
+    - name: input_list
+      type: 'List'
+      description: 'List of characters'
+    - name: regex
+      type: 'Character'
+      description: 'Regular expression to be used for comparison in re.match()'
+
+  - name: starts_with
+    description: > 
+      Returns list of string column names from relation 
+      which start with a specified string
+    arguments: *args 
+    - name: relation
+      type: 'Relation'
+      description: Relation whose column names should be evaluated for matches
+    - name: string
+      type: 'String'
+      description: String to match
+  
+  - name: ends_with
+    description: > 
+      Returns list of string column names from relation 
+      which end with a specified string
+    arguments: *args  
+  
+  - name: contains
+    description: > 
+      Returns list of string column names from relation 
+      which contain (at any position) a specified string
+    arguments: *args 
+    
+  - name: not_contains
+    description: > 
+      Returns list of string column names from relation 
+      which do not contain (at any position) a specified string
+    arguments: *args 
+    
+  - name: one_of
+    description: >
+      Returns list of string column names from relation
+      which exactly match any of a list of strings
+    arguments: &argsOneOf 
+    - name: relation
+      type: 'Relation'
+      description: Relation whose column names should be evaluated for matches
+    - name: strings
+      type: 'List'
+      description: List of strings against which to compare column names
+
+  - name: not_one_of
+    description: >
+      Returns list of string column names from relation
+      which do not match any of a list of strings
+    arguments: *argsOneOf
+
+  - name: matches
+    description: > 
+      Returns list of string column names from relation 
+      which exactly match a specified regex
+    arguments: *args 
+
+  - name: everything
+    description: > 
+      Returns list of string column names from relation 
+      which start with specified string
+    arguments:
+      - name: relation
+        type: 'Relation'
+        description: 'Relation passed with Jinja ref syntax'
