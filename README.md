@@ -34,6 +34,20 @@ from {{ ref('mydata') }}
 
 which `dbt` then compiles to standard SQL. 
 
+Note that, slightly more `dplyr`-like, you may also write:
+
+```
+
+select
+
+  {{ across(starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
+  {{ across(starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
+
+from {{ ref('mydata') }}
+```
+
+But, as each function call is a bit longer than the equivalent `dplyr` code, I personally find the first form more readable.
+
 ## Macros
 
 The complete list of macros included are:
@@ -47,3 +61,5 @@ The complete list of macros included are:
 - `not_one_of(relation, string_list)`
 - `matches(relation, string)`
 - `everything(relation)`
+
+Documentation for these functions is in the [`macros/macro.yml`](https://github.com/emilyriederer/dbt_dplyr/blob/main/macros/macro.yml) file.
