@@ -17,6 +17,22 @@ macros:
     - name: regex
       type: 'Character'
       description: 'Regular expression to be used for comparison in re.match()'
+   
+  - name: across
+    description: >
+      'Generates blocks of SQL code by iterating over a list of variable names,
+      and inserting these names into a template string of code at the places
+      marked with {{var}}. Note that comas are inserted between lines of code but
+      not after the final loop. If desired, this must be done manually.'
+    arguments:
+    - name: var_list
+      type: 'List'
+      description: List of variables over which to apply logic block
+    - name: script_string
+      type: 'String'
+      description: >
+        'String of script to include for each variable 
+        with variable name abstracted to {{var}}'
 
   - name: starts_with
     description: > 
