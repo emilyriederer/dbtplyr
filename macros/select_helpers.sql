@@ -2,7 +2,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = "^" ~ string ~ ".*" %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
@@ -11,7 +11,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = "^.*" ~ string ~ "$" %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
@@ -20,7 +20,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = "^.*" ~ string ~ ".*$" %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
@@ -29,7 +29,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = "^((?!" ~ string ~ ").)*$" %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
@@ -38,7 +38,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = "^("+ strings|join("|") +")$" %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
@@ -55,7 +55,7 @@
 
 {%set cols = dbt_dplyr.get_column_names(relation) %}
 {%set regex = string %}
-{%set results = get_matches(cols, regex) %}
+{%set results = dbt_dplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
 {% endmacro %}
