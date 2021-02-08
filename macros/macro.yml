@@ -38,7 +38,7 @@ macros:
     description: > 
       Returns list of string column names from relation 
       which start with a specified string
-    arguments: *args 
+    arguments: &args 
     - name: relation
       type: 'Relation'
       description: Relation whose column names should be evaluated for matches
