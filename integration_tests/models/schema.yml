@@ -35,3 +35,7 @@ models:
         tests:
           - accepted_values:
               values: ['']
+      - name: everything
+        tests:
+          - accepted_values:
+              values: ['n_a,ind_a,ind_b,amt_c']
