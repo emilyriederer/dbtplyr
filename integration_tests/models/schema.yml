@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: starts_with
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('answer_starts_with')

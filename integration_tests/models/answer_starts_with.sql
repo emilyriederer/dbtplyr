@@ -1,0 +1,1 @@
+select 1 as n_a from {{ref('data')}}

@@ -1,0 +1,5 @@
+packages:
+  - package: fishtown-analytics/dbt_utils
+    version: 0.6.4
+  - git: https://github.com/emilyriederer/dbt_dplyr.git
+    revision: main
