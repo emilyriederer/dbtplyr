@@ -1,0 +1,1 @@
+select 4 as amt_c from {{ref('data')}}

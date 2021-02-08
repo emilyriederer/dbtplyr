@@ -2,6 +2,36 @@ version: 2
 
 models:
   - name: starts_with
+    tests: &isAns
+      - dbt_utils.equality:
+          compare_model: ref('answer')
+  - name: ends_with
+    tests: *isAns 
+  - name: one_of
+    tests: *isAns 
+  - name: not_one_of
+    tests: *isAns
+  - name: contains
+    tests: *isAns
+  - name: not_contains
+    tests: *isAns
+  - name: matches
+    tests: *isAns 
+  - name: everything
     tests:
       - dbt_utils.equality:
-          compare_model: ref('answer_starts_with')
+          compare_model: ref('data')
+  - name: as_values
+    columns:
+      - name: starts_with_n
+        tests:
+          - accepted_values:
+              values: ['n_a']
+      - name: starts_with_ind
+        tests:
+          - accepted_values:
+              values: ['ind_a,ind_b']
+      - name: starts_with_cat
+        tests:
+          - accepted_values:
+              values: ['']
