@@ -1,5 +1,9 @@
 {% macro get_column_names(relation) %}
 
+{% if relation is sequence %}
+  {{ return(relation) }}
+{% endif %}
+
 {% set relation_query %}
 select column_name
 FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
