@@ -21,13 +21,14 @@ summarize(
 This package enables us to similarly write `dbt` data models with commands like:
 
 ```
-{% cols_n = starts_with( ref('mydata'), 'N') %}
-{% cols_ind = starts_with( ref('mydata'), 'IND') %}
+{% set cols = dbt_dplyr.get_column_names( ref('mydata') ) %}
+{% set cols_n = dbt_dplyr.starts_with(cols, 'N') %}
+{% set cols_ind = dbt_dplyr.starts_with(cols, 'IND') %}
 
 select
 
-  {{ across(cols_n, "sum({{var}}) as {{var}}_tot") }},
-  {{ across(cols_ind, "mean({{var}}) as {{var}}_avg") }}
+  {{ dbt_dplyr.across(cols_n, "sum({{var}}) as {{var}}_tot") }},
+  {{ dbt_dplyr.across(cols_ind, "mean({{var}}) as {{var}}_avg") }}
 
 from {{ ref('mydata') }}
 ```
@@ -40,8 +41,8 @@ Note that, slightly more `dplyr`-like, you may also write:
 
 select
 
-  {{ across(starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
-  {{ across(starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
+  {{ dbt_dplyr.across(dbt_dplyr.starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
+  {{ dbt_dplyr.across(dbt_dplyr.starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
 
 from {{ ref('mydata') }}
 ```

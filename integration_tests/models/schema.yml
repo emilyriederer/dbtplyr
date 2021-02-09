@@ -39,3 +39,15 @@ models:
         tests:
           - accepted_values:
               values: ['n_a,ind_a,ind_b,amt_c']
+      - name: ends_with_b
+        tests:
+          - accepted_values:
+              values: ['ind_b']
+      - name: ends_with_a
+        tests:
+          - accepted_values:
+              values: ['n_a,ind_a']
+      - name: ends_with_z
+        tests:
+          - accepted_values:
+              values: ['']

@@ -41,7 +41,10 @@ macros:
     arguments: &args 
     - name: relation
       type: 'Relation'
-      description: Relation whose column names should be evaluated for matches
+      description: >
+        'Relation whose column names should be evaluated for matches.
+        If list of column names has already been obtained with a separate
+        call to get_column_names(), this list may be passed instead for efficiency.'
     - name: string
       type: 'String'
       description: String to match
