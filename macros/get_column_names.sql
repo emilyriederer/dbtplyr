@@ -1,6 +1,6 @@
 {% macro get_column_names(relation) %}
 
-{% if relation is sequence %}
+{% if relation.database is not defined %}
   {{ return(relation) }}
 {% endif %}
 
