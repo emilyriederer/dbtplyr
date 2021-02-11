@@ -13,7 +13,7 @@
     {{ var_list | join(script_string) }}
   {% else %}
 	{% set vars = var_list | join(",") %}
-	{{ script_string | replace('{{var}}', var_lists) }}
+	{{ script_string | replace('{{var}}', vars) }}
   {% endif %}
 
 {% endmacro %}
