@@ -9,11 +9,11 @@
 
 {% macro c_across(var_list, script_string) %}
 
-  {% if modules.re.match('{{var}}', script_string) %}
-    {% set vars = var_list | join(",") %}
-	{{ script_string | replace('{{var}}', var_lists) }}
-  {% else %}
+  {% if modules.re.match('{{var}}', script_string) is None %}
     {{ var_list | join(script_string) }}
+  {% else %}
+	{% set vars = var_list | join(",") %}
+	{{ script_string | replace('{{var}}', var_lists) }}
   {% endif %}
 
 {% endmacro %}
