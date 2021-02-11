@@ -9,7 +9,7 @@
 
 {% macro c_across(var_list, script_string) %}
 
-  {% if modules.re.match('{{var}}', script_string) is none %}
+  {% if script_string | length < 2 %}
     {{ var_list | join(script_string) }}
   {% else %}
 	{% set vars = var_list | join(",") %}

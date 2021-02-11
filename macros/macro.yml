@@ -37,11 +37,11 @@ macros:
   - name: c_across
     description: >
       'Generates blocks of SQL code by iterating over a list of variable names,
-      and inserting these names into a template string. If template script includes
-      {{var}}, this is replaced with a comma-separated list of variables. For example,
-      greatest({{var}}) would be replaced with greatest(a,b,c). Otherwise, the 
-      template string itself is put between each variable. For example, + converts
-      to a+b+c.'
+      and inserting these names into a template string. If template script is a single
+      character, the template string itself is put between each variable. For example, 
+      + converts to a+b+c. Otherwise it should contain {{var}}, which will the  be
+      replaced with a comma-separated list of variables. For example,
+      greatest({{var}}) would be replaced with greatest(a,b,c). '
     arguments:
     - name: var_list
       type: 'List'
