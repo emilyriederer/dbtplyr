@@ -22,7 +22,7 @@ models:
       - dbt_utils.equality:
           compare_model: ref('data')
   - name: c_across
-    colums:
+    columns:
       - name: plus_operator
         columns:
           - accepted values:
@@ -31,6 +31,18 @@ models:
         columns:
           - accepted_values:
               values: [2]
+  - name: if_all_any
+    columns:
+      - name: not_all
+        tests:
+          - accepted_values:
+              values: [0]
+              quote: false
+      - name: yes_any
+        tests:
+          - accepted_values:
+              values: [1]
+              quote: false
   - name: as_values
     columns:
       - name: starts_with_n
