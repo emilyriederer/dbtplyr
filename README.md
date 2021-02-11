@@ -54,7 +54,10 @@ But, as each function call is a bit longer than the equivalent `dplyr` code, I p
 The complete list of macros included are:
 
 - `across(var_list, script_string)`
-- `starts_with(relation, string)`
+- `c_across(var_list, script_string)`
+- `if_any(var_list, script_string)`
+- `if_all(var_list, script_string)`
+- `starts_with(relation, string)` 
 - `ends_with(relation, string)`
 - `contains(relation, string)`
 - `not_contains(relation, string)`

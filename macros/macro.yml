@@ -24,7 +24,7 @@ macros:
       and inserting these names into a template string of code at the places
       marked with {{var}}. Note that comas are inserted between lines of code but
       not after the final loop. If desired, this must be done manually.'
-    arguments:
+    arguments: &argsAcross
     - name: var_list
       type: 'List'
       description: List of variables over which to apply logic block
@@ -33,6 +33,39 @@ macros:
       description: >
         'String of script to include for each variable 
         with variable name abstracted to {{var}}'
+        
+  - name: c_across
+    description: >
+      'Generates blocks of SQL code by iterating over a list of variable names,
+      and inserting these names into a template string. If template script includes
+      {{var}}, this is replaced with a comma-separated list of variables. For example,
+      `greatest({{var}})` would be replaced with `greatest(a,b,c)`. Otherwise, the 
+      template string itself is put between each variable. For example, `+` converts
+      to `a+b+c`.'
+    arguments: &argsAcross
+    - name: var_list
+      type: 'List'
+      description: List of variables over which to apply logic block
+    - name: script_string
+      type: 'String'
+      description: >
+        'String of script to include for each variable 
+        with variable name abstracted to {{var}} or provided
+        as operator to place between each element of the variable list.'
+        
+  - name: if_any
+    description: >
+      'Generates blocks of SQL code by iterating over a list of variable names,
+      and inserting these names into a template string of code at the places
+      marked with {{var}}. Conditions are separated by logical OR.'
+    arguments: *argsAcross
+        
+  - name: if_all
+    description: >
+      'Generates blocks of SQL code by iterating over a list of variable names,
+      and inserting these names into a template string of code at the places
+      marked with {{var}}. Conditions are separated by logical AND'
+    arguments: *argsAcross
 
   - name: starts_with
     description: > 
