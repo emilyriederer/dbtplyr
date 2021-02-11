@@ -42,7 +42,7 @@ macros:
       greatest({{var}}) would be replaced with greatest(a,b,c). Otherwise, the 
       template string itself is put between each variable. For example, + converts
       to a+b+c.'
-    arguments: &argsAcross
+    arguments:
     - name: var_list
       type: 'List'
       description: List of variables over which to apply logic block
