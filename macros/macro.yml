@@ -33,6 +33,13 @@ macros:
       description: >
         'String of script to include for each variable 
         with variable name abstracted to {{var}}'
+    - name: final_comma
+      type: 'Boolean'
+      description: > 
+        'false (default) or true to denote whether to include terminal comma.
+        This is particularly useful if var_list may return null. In that case,
+        including the comma on the inside is safer than hard-coding it in your
+        main SQL script.'
         
   - name: c_across
     description: >
@@ -58,14 +65,22 @@ macros:
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string of code at the places
       marked with {{var}}. Conditions are separated by logical OR.'
-    arguments: *argsAcross
+    arguments: &argsIf
+    - name: var_list
+      type: 'List'
+      description: List of variables over which to apply logic block
+    - name: script_string
+      type: 'String'
+      description: >
+        'String of script to include for each variable 
+        with variable name abstracted to {{var}}'
         
   - name: if_all
     description: >
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string of code at the places
       marked with {{var}}. Conditions are separated by logical AND'
-    arguments: *argsAcross
+    arguments: *argsIf
 
   - name: starts_with
     description: > 
