@@ -66,4 +66,6 @@ The complete list of macros included are:
 - `matches(relation, string)`
 - `everything(relation)`
 
+Note that all of the select-helper functions that take a relation as an argument can optionally be passed a list of names instead.
+
 Documentation for these functions is in the [`macros/macro.yml`](https://github.com/emilyriederer/dbt_dplyr/blob/main/macros/macro.yml) file.
