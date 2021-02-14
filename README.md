@@ -1,7 +1,5 @@
 ## dbt-dplyr
 
-**This project is a WIP and experimental. It is not well tested or ready for production**
-
 This add-on package enhances `dbt` by providing macros which programmatically select columns
 based on their column names. It is inspired by the [`across()` function](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/) 
 and the [`select helpers`](https://tidyselect.r-lib.org/reference/select_helpers.html) in the R package `dplyr`.
@@ -34,6 +32,15 @@ from {{ ref('mydata') }}
 ```
 
 which `dbt` then compiles to standard SQL. 
+
+Alternatively, to protect against cases where no column names matched the pattern provided 
+(e.g. no variables start with `n` so `cols_n` is an empty list), one may instead internalize the final comma
+so that it is only compiled to SQL when relevant by using the `final_comma` parameter of `across`.
+
+```
+  {{ dbt_dplyr.across(cols_n, "sum({{var}}) as {{var}}_tot", final_comma = true) }}
+```
+
 
 Note that, slightly more `dplyr`-like, you may also write:
 
