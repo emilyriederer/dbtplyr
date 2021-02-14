@@ -53,7 +53,7 @@ But, as each function call is a bit longer than the equivalent `dplyr` code, I p
 
 The complete list of macros included are:
 
-- `across(var_list, script_string)`
+- `across(var_list, script_string, final_comma)`
 - `c_across(var_list, script_string)`
 - `if_any(var_list, script_string)`
 - `if_all(var_list, script_string)`
