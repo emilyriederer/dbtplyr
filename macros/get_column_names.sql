@@ -5,9 +5,19 @@
 {% endif %}
 
 {% set relation_query %}
-select column_name
-FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
-WHERE table_name = '{{relation.identifier}}';
+
+  {% if target.type == 'postgres' %}
+      select column_name
+      from information_schema.columns
+      where 
+        table_schema = '{{relation.schema}}' and
+        table_name = '{{relation.identifier}}';
+  {% else %}
+      select column_name
+      FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
+      WHERE table_name = '{{relation.identifier}}';
+  {% endif %}
+
 {% endset %}
 
 {% set results = run_query(relation_query) %}
