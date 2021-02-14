@@ -15,6 +15,6 @@ dbt_dplyr:
       pass: "{{ env_var('POSTGRES_TEST_PASS') }}"
       port: "{{ env_var('POSTGRES_TEST_PORT') | as_number }}"
       dbname: "{{ env_var('POSTGRES_TEST_DBNAME') }}"
-      schema: audit_helper_integration_tests_postgres
+      schema: integration_tests_postgres
       threads: 1
 
