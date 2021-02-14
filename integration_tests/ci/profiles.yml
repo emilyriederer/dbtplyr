@@ -15,6 +15,13 @@ dbt_dplyr:
       pass: "{{ env_var('POSTGRES_TEST_PASS') }}"
       port: "{{ env_var('POSTGRES_TEST_PORT') | as_number }}"
       dbname: "{{ env_var('POSTGRES_TEST_DBNAME') }}"
-      schema: integration_tests_postgres
+      schema: dbtply_integration_tests_postgres
       threads: 1
 
+    bigquery:
+      type: bigquery
+      method: service-account
+      keyfile: "{{ env_var('BIGQUERY_SERVICE_KEY_PATH') }}"
+      project: "{{ env_var('BIGQUERY_TEST_DATABASE') }}"
+      schema: dbtplyr_integration_tests_bigquery
+      threads: 1
