@@ -6,16 +6,16 @@
 
 {% set relation_query %}
 
-  {% if target.type == 'postgres' %}
+  {% if target.type == 'bigquery' %}
+      select column_name
+      FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
+      WHERE table_name = '{{relation.identifier}}';
+  {% else %}
       select column_name
       from information_schema.columns
       where 
         table_schema = '{{relation.schema}}' and
         table_name = '{{relation.identifier}}';
-  {% else %}
-      select column_name
-      FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
-      WHERE table_name = '{{relation.identifier}}';
   {% endif %}
 
 {% endset %}
@@ -32,3 +32,5 @@
 {{ return(results_list) }}
 
 {% endmacro %}
+
+
