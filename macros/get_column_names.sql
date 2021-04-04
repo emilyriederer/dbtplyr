@@ -1,5 +1,7 @@
 {% macro get_column_names(relation) %}
 
+{#
+
 {% if relation.database is not defined %}
   {{ return(relation) }}
 {% endif %}
@@ -29,6 +31,9 @@
 {% set results_list = [] %}
 {% endif %}
 
+#}
+
+{%- set results_list  = adapter.get_columns_in_relation(relation) -%}
 {{ return(results_list) }}
 
 {% endmacro %}
