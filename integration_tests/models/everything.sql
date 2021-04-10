@@ -1,3 +1,3 @@
-{% set cols_n = dbt_dplyr.everything( ref('data')) %}
-select {{ dbt_dplyr.across(cols_n, "{{var}}") }}
+{% set cols_n = dbtplyr.everything( ref('data')) %}
+select {{ dbtplyr.across(cols_n, "{{var}}") }}
 from {{ ref('data') }}
