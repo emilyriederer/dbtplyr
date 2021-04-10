@@ -1,4 +1,4 @@
-{% macro starts_with(relation, string) %}
+{% macro starts_with(string, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = "^" ~ string ~ ".*" %}
@@ -7,7 +7,7 @@
 
 {% endmacro %}
 
-{% macro ends_with(relation, string) %}
+{% macro ends_with(string, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = "^.*" ~ string ~ "$" %}
@@ -16,7 +16,7 @@
 
 {% endmacro %}
 
-{% macro contains(relation, string) %}
+{% macro contains(string, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = "^.*" ~ string ~ ".*$" %}
@@ -25,7 +25,7 @@
 
 {% endmacro %}
 
-{% macro not_contains(relation, string) %}
+{% macro not_contains(string, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = "^((?!" ~ string ~ ").)*$" %}
@@ -34,7 +34,7 @@
 
 {% endmacro %}
 
-{% macro one_of(relation, strings) %}
+{% macro one_of(strings, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = "^("+ strings|join("|") +")$" %}
@@ -43,7 +43,7 @@
 
 {% endmacro %}
 
-{% macro not_one_of(relation, strings) %}
+{% macro not_one_of(strings, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set results = cols | reject('in', strings) %}
@@ -51,7 +51,7 @@
 
 {% endmacro %}
 
-{% macro matches(relation, string) %}
+{% macro matches(string, relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
 {%set regex = string %}
