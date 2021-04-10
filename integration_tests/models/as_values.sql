@@ -1,4 +1,4 @@
-{% set cols = get_columns_names( ref('data') ) %}
+{% set cols = dbt_dplyr.get_columns_names( ref('data') ) %}
 {% set cast_to %}
   {% if target.type == 'postgres' %}
     text
