@@ -1,4 +1,4 @@
-{% set cols = adapter.get_columns_in_relation( ref('data') ) %}
+{% set cols = get_columns_names( ref('data') ) %}
 {% set cast_to %}
   {% if target.type == 'postgres' %}
     text
