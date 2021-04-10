@@ -1,3 +1,3 @@
-{% set cols_n = dbt_dplyr.starts_with( ref('data'), 'amt') %}
-select {{ dbt_dplyr.across(cols_n, "{{var}}") }}
+{% set cols_n = dbtplyr.starts_with( ref('data'), 'amt') %}
+select {{ dbtplyr.across(cols_n, "{{var}}") }}
 from {{ ref('data') }}
