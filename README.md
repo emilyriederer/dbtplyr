@@ -1,4 +1,4 @@
-## dbt-dplyr
+## dbtplyr
 
 This add-on package enhances `dbt` by providing macros which programmatically select columns
 based on their column names. It is inspired by the [`across()` function](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/) 
@@ -19,14 +19,14 @@ summarize(
 This package enables us to similarly write `dbt` data models with commands like:
 
 ```
-{% set cols = dbt_dplyr.get_column_names( ref('mydata') ) %}
-{% set cols_n = dbt_dplyr.starts_with(cols, 'N') %}
-{% set cols_ind = dbt_dplyr.starts_with(cols, 'IND') %}
+{% set cols = dbtplyr.get_column_names( ref('mydata') ) %}
+{% set cols_n = dbtplyr.starts_with(cols, 'N') %}
+{% set cols_ind = dbtplyr.starts_with(cols, 'IND') %}
 
 select
 
-  {{ dbt_dplyr.across(cols_n, "sum({{var}}) as {{var}}_tot") }},
-  {{ dbt_dplyr.across(cols_ind, "mean({{var}}) as {{var}}_avg") }}
+  {{ dbtplyr.across(cols_n, "sum({{var}}) as {{var}}_tot") }},
+  {{ dbtplyr.across(cols_ind, "mean({{var}}) as {{var}}_avg") }}
 
 from {{ ref('mydata') }}
 ```
@@ -38,7 +38,7 @@ Alternatively, to protect against cases where no column names matched the patter
 so that it is only compiled to SQL when relevant by using the `final_comma` parameter of `across`.
 
 ```
-  {{ dbt_dplyr.across(cols_n, "sum({{var}}) as {{var}}_tot", final_comma = true) }}
+  {{ dbtplyr.across(cols_n, "sum({{var}}) as {{var}}_tot", final_comma = true) }}
 ```
 
 
@@ -48,8 +48,8 @@ Note that, slightly more `dplyr`-like, you may also write:
 
 select
 
-  {{ dbt_dplyr.across(dbt_dplyr.starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
-  {{ dbt_dplyr.across(dbt_dplyr.starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
+  {{ dbtplyr.across(dbtplyr.starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
+  {{ dbtplyr.across(dbtplyr.starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
 
 from {{ ref('mydata') }}
 ```
@@ -75,4 +75,4 @@ The complete list of macros included are:
 
 Note that all of the select-helper functions that take a relation as an argument can optionally be passed a list of names instead.
 
-Documentation for these functions is in the [`macros/macro.yml`](https://github.com/emilyriederer/dbt_dplyr/blob/main/macros/macro.yml) file.
+Documentation for these functions is in the [`macros/macro.yml`](https://github.com/emilyriederer/dbtplyr/blob/main/macros/macro.yml) file.

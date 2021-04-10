@@ -1,7 +1,7 @@
-name: 'dbt_dplyr_integration_tests'
+name: 'dbtplyr_integration_tests'
 version: '1.0'
 
-profile: 'dbt_dplyr'
+profile: 'dbtplyr'
 
 # require-dbt-version: inherit this from dbt-utils
 
