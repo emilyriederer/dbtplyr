@@ -10,14 +10,14 @@
 select
 
   -- starts_with
-  cast({{ "'" ~ dbtplyr.starts_with(cols, 'n') | join(',') ~ "'"}} as {{cast_to}})    as starts_with_n, -- single item
-  cast({{ "'" ~ dbtplyr.starts_with(cols, 'ind') | join(',') ~ "'" }} as {{cast_to}}) as starts_with_ind, -- multiple items
-  cast({{ "'" ~ dbtplyr.starts_with(cols, 'cat') | join(',') ~ "'"}} as {{cast_to}})  as starts_with_cat, -- no items
+  cast({{ "'" ~ dbtplyr.starts_with('n',   cols) | join(',') ~ "'"}} as {{cast_to}}) as starts_with_n, -- single item
+  cast({{ "'" ~ dbtplyr.starts_with('ind', cols) | join(',') ~ "'"}} as {{cast_to}}) as starts_with_ind, -- multiple items
+  cast({{ "'" ~ dbtplyr.starts_with('cat', cols) | join(',') ~ "'"}} as {{cast_to}}) as starts_with_cat, -- no items
   
   -- ends_with (TODO)
-  cast({{ "'" ~ dbtplyr.ends_with(cols, 'b') | join(',') ~ "'"}} as {{cast_to}})  as ends_with_b, -- single item
-  cast({{ "'" ~ dbtplyr.ends_with(cols, 'a') | join(',') ~ "'" }} as {{cast_to}}) as ends_with_a, -- multiple items
-  cast({{ "'" ~ dbtplyr.ends_with(cols, 'z') | join(',') ~ "'"}} as {{cast_to}})  as ends_with_z, -- no items
+  cast({{ "'" ~ dbtplyr.ends_with('b', cols) | join(',') ~ "'"}} as {{cast_to}}) as ends_with_b, -- single item
+  cast({{ "'" ~ dbtplyr.ends_with('a', cols) | join(',') ~ "'"}} as {{cast_to}}) as ends_with_a, -- multiple items
+  cast({{ "'" ~ dbtplyr.ends_with('z', cols) | join(',') ~ "'"}} as {{cast_to}}) as ends_with_z, -- no items
   
   -- matches (TODO)
     

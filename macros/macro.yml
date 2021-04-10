@@ -89,15 +89,15 @@ macros:
       Returns list of string column names from relation 
       which start with a specified string
     arguments: &args 
+    - name: string
+      type: 'String'
+      description: String to match
     - name: relation
       type: 'Relation'
       description: >
         'Relation whose column names should be evaluated for matches.
         If list of column names has already been obtained with a separate
         call to get_column_names(), this list may be passed instead for efficiency.'
-    - name: string
-      type: 'String'
-      description: String to match
   
   - name: ends_with
     description: > 
@@ -122,12 +122,12 @@ macros:
       Returns list of string column names from relation
       which exactly match any of a list of strings
     arguments: &argsOneOf 
-    - name: relation
-      type: 'Relation'
-      description: Relation whose column names should be evaluated for matches or list of column names
     - name: strings
       type: 'List'
       description: List of strings against which to compare column names
+    - name: relation
+      type: 'Relation'
+      description: Relation whose column names should be evaluated for matches or list of column names
 
   - name: not_one_of
     description: >
