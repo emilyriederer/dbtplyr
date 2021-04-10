@@ -11,5 +11,3 @@
 {{ return(results_list) }}
 
 {% endmacro %}
-
-
