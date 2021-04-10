@@ -60,17 +60,25 @@ But, as each function call is a bit longer than the equivalent `dplyr` code, I p
 
 The complete list of macros included are:
 
+**Functions to apply operation across columns**
+
 - `across(var_list, script_string, final_comma)`
 - `c_across(var_list, script_string)`
+
+**Functions to evaluation condition across columns**
+
 - `if_any(var_list, script_string)`
 - `if_all(var_list, script_string)`
-- `starts_with(relation, string)` 
-- `ends_with(relation, string)`
-- `contains(relation, string)`
-- `not_contains(relation, string)`
-- `one_of(relation, string_list)`
-- `not_one_of(relation, string_list)`
-- `matches(relation, string)`
+
+**Functions to subset columns by naming conventions**
+
+- `starts_with(string, relation or list)` 
+- `ends_with(string, relation or list)`
+- `contains(string, relation or list)`
+- `not_contains(string, relation or list)`
+- `one_of(string_list, relation or list)`
+- `not_one_of(string_list, relation or list)`
+- `matches(string, relation)`
 - `everything(relation)`
 
 Note that all of the select-helper functions that take a relation as an argument can optionally be passed a list of names instead.
