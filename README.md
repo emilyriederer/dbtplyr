@@ -20,8 +20,8 @@ This package enables us to similarly write `dbt` data models with commands like:
 
 ```
 {% set cols = dbtplyr.get_column_names( ref('mydata') ) %}
-{% set cols_n = dbtplyr.starts_with(cols, 'N') %}
-{% set cols_ind = dbtplyr.starts_with(cols, 'IND') %}
+{% set cols_n = dbtplyr.starts_with('N', cols) %}
+{% set cols_ind = dbtplyr.starts_with('IND', cols) %}
 
 select
 
@@ -45,11 +45,10 @@ so that it is only compiled to SQL when relevant by using the `final_comma` para
 Note that, slightly more `dplyr`-like, you may also write:
 
 ```
-
 select
 
-  {{ dbtplyr.across(dbtplyr.starts_with( ref('mydata'), 'N'), "sum({{var}}) as {{var}}_tot") }},
-  {{ dbtplyr.across(dbtplyr.starts_with( ref('mydata'), 'IND'), "mean({{var}}) as {{var}}_avg") }}
+  {{ dbtplyr.across(dbtplyr.starts_with('N', ref('mydata')), "sum({{var}}) as {{var}}_tot") }},
+  {{ dbtplyr.across(dbtplyr.starts_with('IND', ref('mydata')), "mean({{var}}) as {{var}}_avg") }}
 
 from {{ ref('mydata') }}
 ```
