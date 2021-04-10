@@ -7,7 +7,11 @@
   {{ return(relation) }}
 {% endif %}
 
-{%- set results_list  = adapter.get_columns_in_relation(relation) -%}
+{%- set cols_list  = adapter.get_columns_in_relation(relation) -%}
+{% set results_list = [] %}
+{% for c in cols_list %}
+        {{ results_list.append(c.name) }}
+{% endfor %}
 {{ return(results_list) }}
 
 {% endmacro %}
