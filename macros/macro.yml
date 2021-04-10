@@ -24,7 +24,7 @@ macros:
     description: >
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string of code at the places
-      marked with {{var}}. Note that comas are inserted between lines of code but
+      marked with \{\{var\}\}. Note that comas are inserted between lines of code but
       not after the final loop. If desired, this must be done manually.'
     arguments: &argsAcross
     - name: var_list
@@ -34,7 +34,7 @@ macros:
       type: 'String'
       description: >
         'String of script to include for each variable 
-        with variable name abstracted to {{var}}'
+        with variable name abstracted to \{\{var\}\}'
     - name: final_comma
       type: 'Boolean'
       description: > 
@@ -48,9 +48,9 @@ macros:
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string. If template script is a single
       character, the template string itself is put between each variable. For example, 
-      + converts to a+b+c. Otherwise it should contain {{var}}, which will the  be
+      + converts to a+b+c. Otherwise it should contain \{\{var\}\}, which will the  be
       replaced with a comma-separated list of variables. For example,
-      greatest({{var}}) would be replaced with greatest(a,b,c). '
+      greatest(\{\{var\}\}) would be replaced with greatest(a,b,c). '
     arguments:
     - name: var_list
       type: 'List'
@@ -59,14 +59,14 @@ macros:
       type: 'String'
       description: >
         'String of script to include for each variable 
-        with variable name abstracted to {{var}} or provided
+        with variable name abstracted to \{\{var\}\} or provided
         as operator to place between each element of the variable list.'
         
   - name: if_any
     description: >
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string of code at the places
-      marked with {{var}}. Conditions are separated by logical OR.'
+      marked with \{\{var\}\}. Conditions are separated by logical OR.'
     arguments: &argsIf
     - name: var_list
       type: 'List'
@@ -75,13 +75,13 @@ macros:
       type: 'String'
       description: >
         'String of script to include for each variable 
-        with variable name abstracted to {{var}}'
+        with variable name abstracted to \{\{var\}\}'
         
   - name: if_all
     description: >
       'Generates blocks of SQL code by iterating over a list of variable names,
       and inserting these names into a template string of code at the places
-      marked with {{var}}. Conditions are separated by logical AND'
+      marked with \{\{var\}\}. Conditions are separated by logical AND'
     arguments: *argsIf
 
   - name: starts_with
@@ -124,7 +124,7 @@ macros:
     arguments: &argsOneOf 
     - name: relation
       type: 'Relation'
-      description: Relation whose column names should be evaluated for matches
+      description: Relation whose column names should be evaluated for matches or list of column names
     - name: strings
       type: 'List'
       description: List of strings against which to compare column names
@@ -148,4 +148,4 @@ macros:
     arguments:
       - name: relation
         type: 'Relation'
-        description: 'Relation passed with Jinja ref syntax'
+        description: 'Relation passed with Jinja ref syntax or list of column namess'
