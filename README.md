@@ -19,7 +19,7 @@ summarize(
 This package enables us to similarly write `dbt` data models with commands like:
 
 ```
-{% set cols = dbt_dplyr.get_column_names( ref('mydata') ) %}
+{% set cols = adapter.get_columns_in_relation( ref('mydata') ) %}
 {% set cols_n = dbt_dplyr.starts_with(cols, 'N') %}
 {% set cols_ind = dbt_dplyr.starts_with(cols, 'IND') %}
 
