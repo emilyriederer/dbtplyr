@@ -19,4 +19,4 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
 
 seeds:
-  +quote_columns: false
+  +quote_columns: true

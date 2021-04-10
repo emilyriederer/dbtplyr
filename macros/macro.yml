@@ -2,12 +2,14 @@ version: 2
 
 macros:
   - name: get_column_names
-    description: Returns string column names of relation passed
+    description: > 
+      'Returns string column names of relation passed or passes through
+       list of strings if already supplied'
     arguments:
       - name: relation
         type: 'Relation'
         description: 'Relation passed with Jinja ref syntax'
-        
+
   - name: get_matches
     description: Returns list of strings matching provided regular expression
     arguments:

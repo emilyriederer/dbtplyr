@@ -1,36 +1,17 @@
 {% macro get_column_names(relation) %}
 
+{# if relation is not actually a reference simply pass through #}
+{# this is useful so downstream functions can accept either list or relation #}
+
 {% if relation.database is not defined %}
   {{ return(relation) }}
 {% endif %}
 
-{% set relation_query %}
-
-  {% if target.type == 'bigquery' %}
-      select column_name
-      FROM {{relation.database}}.{{relation.schema}}.INFORMATION_SCHEMA.COLUMNS
-      WHERE table_name = '{{relation.identifier}}';
-  {% else %}
-      select column_name
-      from information_schema.columns
-      where 
-        table_schema = '{{relation.schema}}' and
-        table_name = '{{relation.identifier}}';
-  {% endif %}
-
-{% endset %}
-
-{% set results = run_query(relation_query) %}
-
-{% if execute %}
-{# Return the first column #}
-{% set results_list = results.columns[0].values() %}
-{% else %}
+{%- set cols_list  = adapter.get_columns_in_relation(relation) -%}
 {% set results_list = [] %}
-{% endif %}
-
+{% for c in cols_list %}
+        {{ results_list.append(c.name) }}
+{% endfor %}
 {{ return(results_list) }}
 
 {% endmacro %}
-
-
