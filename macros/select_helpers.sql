@@ -61,6 +61,15 @@
 {% endmacro %}
 
 
+{% macro where(fn, relation) %}
+
+{%set cols = adapter.get_columns_in_relation(relation) %}
+{%set results = dbtplyr.map(cols, fn) %}
+{{return(results)}}
+
+{% endmacro %}
+
+
 {% macro everything(relation) %}
 
 {%set cols = dbtplyr.get_column_names(relation) %}
