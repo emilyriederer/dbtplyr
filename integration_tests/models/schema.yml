@@ -73,3 +73,7 @@ models:
         tests:
           - accepted_values:
               values: ['']
+      - name: where_number
+        tests:
+          - accepted_values:
+              values: ['n_a']

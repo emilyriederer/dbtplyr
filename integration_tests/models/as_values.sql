@@ -32,6 +32,9 @@ select
   -- everything
   cast({{ "'" ~ dbtplyr.everything(cols) | join(',') ~ "'"}} as {{cast_to}}) as everything, -- no items
   
+  -- where
+  cast({{ "'" ~ dbtplyr.where("is_number", ref('data_types')) | join(',') ~ "'"}} as {{cast_to}}) as where_number,
+  
   1 as x -- dummy to allow trailing commas
 
   
