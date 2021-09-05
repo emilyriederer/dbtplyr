@@ -67,3 +67,24 @@
 {{return(cols)}}
 
 {% endmacro %}
+
+{% macro where(fn, relation) %}
+
+  {% set cols = adapter.get_columns_in_relation(relation) %}
+  {% set results_list = [] %}
+
+  {%  for c in cols %}
+    {% if fn == "is_character" and c.is_character() %}
+      {{ results_list.append(c.name) or "" }}
+    {% elif fn == "is_number" and c.is_number() %}
+      {{ results_list.append(c.name) or "" }}
+    {% elif fn == "is_float" and c.is_float() %}
+      {{ results_list.append(c.name) or "" }}
+    {% elif fn == "is_numeric" and c.is_numeric() %}
+      {{ results_list.append(c.name) or "" }}
+    {% endif %}
+  {% endfor %}
+
+{{return(results_list)}}
+
+{% endmacro %}

@@ -87,8 +87,9 @@ The complete list of macros included are:
 - `not_one_of(string_list, relation or list)`
 - `matches(string, relation)`
 - `everything(relation)`
+- `where(fn, relation)` where `fn` is the string name of a [Column type-checker](https://docs.getdbt.com/reference/dbt-classes/#column) (e.g. "is_number")
 
-Note that all of the select-helper functions that take a relation as an argument can optionally be passed a list of names instead.
+Note that all of the select-helper functions (except `where`) that take a relation as an argument can optionally be passed a list of names instead.
 
 You may access documentation for each individual macro using the navigation bar on the left-hand side of the screen.
 

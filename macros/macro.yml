@@ -148,4 +148,32 @@ macros:
     arguments:
       - name: relation
         type: 'Relation'
-        description: 'Relation passed with Jinja ref syntax or list of column namess'
+        description: 'Relation passed with Jinja ref syntax or list of column names'
+
+  - name: where
+    description: >
+      Returns list of string column names from relation
+      which are identified as a specific type
+    arguments:
+      - name: fn
+        type: 'String'
+        description: >
+          String with name of function for dbt Column class which identifies type.
+          Currently supports 'is_numeric', 'is_number', 'is_float', 'is_string'
+      - name: relaiton
+        type: 'Relation'
+        description: >
+          Relation passed with Jinja ref syntax. Note that unlike other macros,
+          a list of column names is not supported for this function because
+          metadata from the underlying Column class is required
+        
+  - name: map
+    description:  >
+      Utility function for applying a function to a list. 
+      This function is intended for internal use only.
+      The primary use is currently to support the where function
+    arguments:
+      - name: input_list
+        description: List of objects 
+      - name: fn
+        description: Function to apply
