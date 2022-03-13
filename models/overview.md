@@ -1,4 +1,4 @@
-{% docs __overview__ %}
+{% docs __dbtplyr__ %}
 
 ## dbtplyr
 
