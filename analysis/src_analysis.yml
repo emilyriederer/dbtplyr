@@ -1,0 +1,10 @@
+version: 2
+
+# Uses SQLite: https://github.com/codeforkjeff/dbt-sqlite/blob/main/README.md
+sources:
+  - name: chinook
+    schema: main
+    database: main
+    tables:
+      - name: albums
+      - name: artistss
