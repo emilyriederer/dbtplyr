@@ -35,7 +35,7 @@ macros:
       description: >
         'String of script to include for each variable 
         with variable name abstracted to \{\{var\}\}.
-'       By default, will return column names with no transformation.'
+        By default, will return column names with no transformation.'
     - name: final_comma
       type: 'Boolean'
       description: > 
