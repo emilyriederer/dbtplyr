@@ -1,4 +1,4 @@
-{% macro across(var_list, script_string, final_comma) %}
+{% macro across(var_list, script_string = '{{var}}', final_comma) %}
 
   {% for v in var_list %}
   {{ script_string | replace('{{var}}', v) }}
