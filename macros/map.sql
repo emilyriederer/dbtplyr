@@ -1,4 +1,4 @@
-{% macro across(input_list, fn) %}
+{% macro map(input_list, fn) %}
     {{ adapter.dispatch('map', 'dbtplyr') (relation) }}
 {% endmacro %}
 
