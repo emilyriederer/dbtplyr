@@ -16,7 +16,7 @@
     {{ adapter.dispatch('c_across', 'dbtplyr') (var_list, script_string) }}
 {% endmacro %}
 
-{% macro c_across(var_list, script_string) %}
+{% macro default__c_across(var_list, script_string) %}
 
   {% if script_string | length < 2 %}
     {{ var_list | join(script_string) }}
