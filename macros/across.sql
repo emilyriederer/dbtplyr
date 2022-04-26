@@ -1,5 +1,5 @@
-{% macro across(var_list, script_string, final_comma) %}
-    {{ adapter.dispatch('across', 'dbtplyr') (var_list, script_string, final_comma) }}
+{% macro across(var_list, script_string = '{{var}}', final_comma = false) %}
+    {{ adapter.dispatch('across', 'dbtplyr') (var_list, script_string = '{{var}}', final_comma = false)) }}
 {% endmacro %}
 
 {% macro default__across(var_list, script_string, final_comma) %}
@@ -16,7 +16,7 @@
     {{ adapter.dispatch('c_across', 'dbtplyr') (var_list, script_string) }}
 {% endmacro %}
 
-{% macro default__c_across(var_list, script_string) %}
+{% macro c_across(var_list, script_string) %}
 
   {% if script_string | length < 2 %}
     {{ var_list | join(script_string) }}
