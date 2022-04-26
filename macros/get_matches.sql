@@ -1,8 +1,7 @@
-{% macro get_matches(var_list, script_string, final_comma) %}
+{% macro get_matches(input_list, regex) %}
     {{ adapter.dispatch('get_matches', 'dbtplyr') (input_list, regex) }}
 {% endmacro %}
 
-{% macro default__get_matches(input_list, regex) %}
 
 {% set results_list = [] %}
 {% for l in input_list %}
