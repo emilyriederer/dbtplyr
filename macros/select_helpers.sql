@@ -99,7 +99,7 @@
 
 {% endmacro %}
 
-{% macro where(relation) %}
+{% macro where(fn, relation) %}
     {{ adapter.dispatch('where', 'dbtplyr') (fn, relation) }}
 {% endmacro %}
 
