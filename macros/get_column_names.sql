@@ -1,4 +1,4 @@
-{% macro get_column_names(var_list, script_string, final_comma) %}
+{% macro get_column_names(relation) %}
     {{ adapter.dispatch('get_column_names', 'dbtplyr') (relation) }}
 {% endmacro %}
 
