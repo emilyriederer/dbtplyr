@@ -51,7 +51,7 @@
 {% endmacro %}
 
 {% macro one_of(strings, relation) %}
-    {{ adapter.dispatch('not_contains', 'dbtplyr') (strings, relation) }}
+    {{ adapter.dispatch('one_of', 'dbtplyr') (strings, relation) }}
 {% endmacro %}
 
 {% macro default__one_of(strings, relation) %}
