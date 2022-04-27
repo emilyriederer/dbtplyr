@@ -34,6 +34,7 @@ jobs:
           name: "Run Tests - BigQuery"
           environment:
               BIGQUERY_SERVICE_KEY_PATH: "/home/circleci/bigquery-service-key.json"
+              BIGQUERY_TEST_DATABASE: "my_test_project_name" # OPTION 1
 
           command: |
             . venv/bin/activate
@@ -66,3 +67,12 @@ jobs:
           key: deps1-{{ .Branch }}
           paths:
             - "venv"
+            
+# OPTION 2
+# automatically make all defined environment variables in a Circle CI context available to a job
+workflows:
+  version: 2
+  test-bq&pg:
+    jobs:
+      - build:
+          context:  MY_CIRCLECI_CONTEXT # that includes the definition of the $BIGQUERY_TEST_DATABASE variable
