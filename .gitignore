@@ -1,4 +1,5 @@
-
 target/
 dbt_modules/
 logs/
+dbt_packages/
+continuous_integration/dbt_packages
