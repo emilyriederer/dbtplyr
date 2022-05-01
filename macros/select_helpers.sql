@@ -1,5 +1,5 @@
 {% macro starts_with(string, relation) %}
-    {{ adapter.dispatch('starts_with', 'dbtplyr') (string, relation) }}
+    {{ return( adapter.dispatch('starts_with', 'dbtplyr') (string, relation) ) }}
 {% endmacro %}
 
 {% macro default__starts_with(string, relation) %}
@@ -12,7 +12,7 @@
 {% endmacro %}
 
 {% macro ends_with(string, relation) %}
-    {{ adapter.dispatch('ends_with', 'dbtplyr') (string, relation) }}
+    {{ return( adapter.dispatch('ends_with', 'dbtplyr') (string, relation) ) }}
 {% endmacro %}
 
 {% macro default__ends_with(string, relation) %}
@@ -25,7 +25,7 @@
 {% endmacro %}
 
 {% macro contains(string, relation) %}
-    {{ adapter.dispatch('contains', 'dbtplyr') (string, relation) }}
+    {{ return( adapter.dispatch('contains', 'dbtplyr') (string, relation) ) }}
 {% endmacro %}
 
 {% macro default__contains(string, relation) %}
@@ -38,7 +38,7 @@
 {% endmacro %}
 
 {% macro not_contains(string, relation) %}
-    {{ adapter.dispatch('not_contains', 'dbtplyr') (string, relation) }}
+    {{ return( adapter.dispatch('not_contains', 'dbtplyr') (string, relation) ) }}
 {% endmacro %}
 
 {% macro default__not_contains(string, relation) %}
@@ -51,7 +51,7 @@
 {% endmacro %}
 
 {% macro one_of(strings, relation) %}
-    {{ adapter.dispatch('one_of', 'dbtplyr') (strings, relation) }}
+    {{ return( adapter.dispatch('one_of', 'dbtplyr') (strings, relation) ) }}
 {% endmacro %}
 
 {% macro default__one_of(strings, relation) %}
@@ -64,7 +64,7 @@
 {% endmacro %}
 
 {% macro not_one_of(strings, relation) %}
-    {{ adapter.dispatch('not_one_of', 'dbtplyr') (strings, relation) }}
+    {{ return( adapter.dispatch('not_one_of', 'dbtplyr') (strings, relation) ) }}
 {% endmacro %}
 
 {% macro default__not_one_of(strings, relation) %}
@@ -76,7 +76,7 @@
 {% endmacro %}
 
 {% macro matches(string, relation) %}
-    {{ adapter.dispatch('matches', 'dbtplyr') (string, relation) }}
+    {{ return( adapter.dispatch('matches', 'dbtplyr') (string, relation) ) }}
 {% endmacro %}
 
 {% macro default__matches(string, relation) %}
@@ -89,7 +89,7 @@
 {% endmacro %}
 
 {% macro everything(relation) %}
-    {{ adapter.dispatch('everything', 'dbtplyr') (relation) }}
+    {{ return( adapter.dispatch('everything', 'dbtplyr') (relation) ) }}
 {% endmacro %}
 
 {% macro default__everything(relation) %}
@@ -100,7 +100,7 @@
 {% endmacro %}
 
 {% macro where(fn, relation) %}
-    {{ adapter.dispatch('where', 'dbtplyr') (fn, relation) }}
+    {{ return( adapter.dispatch('where', 'dbtplyr') (fn, relation) ) }}
 {% endmacro %}
 
 {% macro default__where(fn, relation) %}
