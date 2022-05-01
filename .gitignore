@@ -1,4 +1,4 @@
-
+integration_tests/dbt_packages/
 target/
 dbt_modules/
 logs/
