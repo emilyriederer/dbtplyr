@@ -1,5 +1,5 @@
 {% macro map(input_list, fn) %}
-    {{ adapter.dispatch('map', 'dbtplyr') (relation) }}
+    {{ return( adapter.dispatch('map', 'dbtplyr') (relation) ) }}
 {% endmacro %}
 
 {% macro default__map(input_list, fn) %}
