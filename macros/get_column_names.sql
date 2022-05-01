@@ -1,5 +1,5 @@
 {% macro get_column_names(relation) %}
-    {{ adapter.dispatch('get_column_names', 'dbtplyr')(relation) }}
+    {{ return( adapter.dispatch('get_column_names', 'dbtplyr')(relation) ) }}
 {% endmacro %}
 
 {% macro default__get_column_names(relation) %}
