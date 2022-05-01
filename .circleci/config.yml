@@ -39,11 +39,11 @@ jobs:
             . venv/bin/activate
             echo `pwd`
             cd integration_tests
-            dbt --warn-error deps --target bigquery
-            dbt --warn-error seed --target bigquery --full-refresh
-            dbt --warn-error compile --target bigquery
-            dbt --warn-error run --target bigquery
-            dbt --warn-error test --target bigquery
+            dbt deps --target bigquery
+            dbt seed --target bigquery --full-refresh
+            dbt compile --target bigquery
+            dbt run --target bigquery
+            dbt test --target bigquery
             
       - run:
           name: "Run Tests - Postgres"
