@@ -1,5 +1,5 @@
 {% macro get_matches(input_list, regex) %}
-    {{ adapter.dispatch('get_matches', 'dbtplyr') (input_list, regex) }}
+    {{ return( adapter.dispatch('get_matches', 'dbtplyr') (input_list, regex) ) }}
 {% endmacro %}
 
 
