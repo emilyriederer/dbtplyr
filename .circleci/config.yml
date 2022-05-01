@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.3-stretch
+      - image: cimg/python:3.9.9
       - image: circleci/postgres:9.6.5-alpine-ram
 
     steps:
@@ -16,7 +16,7 @@ jobs:
             echo $BIGQUERY_SERVICE_ACCOUNT_JSON > ${HOME}/bigquery-service-key.json
 
       - restore_cache:
-          key: deps1-{{ .Branch }}
+          key: deps2-{{ .Branch }}
 
       - run:
           name: "Setup dbt"
@@ -25,7 +25,7 @@ jobs:
             . venv/bin/activate
 
             pip install --upgrade pip setuptools
-            pip install dbt
+            pip install --upgrade dbt-core dbt-bigquery dbt-postgres
 
             mkdir -p ~/.dbt
             cp integration_tests/ci/profiles.yml ~/.dbt/profiles.yml
@@ -39,11 +39,11 @@ jobs:
             . venv/bin/activate
             echo `pwd`
             cd integration_tests
-            dbt --warn-error deps --target bigquery
-            dbt --warn-error seed --target bigquery --full-refresh
-            dbt --warn-error compile --target bigquery
-            dbt --warn-error run --target bigquery
-            dbt --warn-error test --target bigquery
+            dbt deps --target bigquery
+            dbt seed --target bigquery --full-refresh
+            dbt compile --target bigquery
+            dbt run --target bigquery
+            dbt test --target bigquery
             
       - run:
           name: "Run Tests - Postgres"
@@ -56,13 +56,13 @@ jobs:
           command: |
             . venv/bin/activate
             cd integration_tests
-            dbt --warn-error deps --target postgres
-            dbt --warn-error seed --target postgres --full-refresh
-            dbt --warn-error compile --target postgres
-            dbt --warn-error run --target postgres
-            dbt --warn-error test --target postgres
+            dbt deps --target postgres
+            dbt seed --target postgres --full-refresh
+            dbt compile --target postgres
+            dbt run --target postgres
+            dbt test --target postgres
             
       - save_cache:
-          key: deps1-{{ .Branch }}
+          key: deps2-{{ .Branch }}
           paths:
             - "venv"

@@ -1,4 +1,8 @@
 {% macro get_column_names(relation) %}
+    {{ return( adapter.dispatch('get_column_names', 'dbtplyr')(relation) ) }}
+{% endmacro %}
+
+{% macro default__get_column_names(relation) %}
 
 {# if relation is not actually a reference simply pass through #}
 {# this is useful so downstream functions can accept either list or relation #}

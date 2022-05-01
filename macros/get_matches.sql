@@ -1,4 +1,9 @@
 {% macro get_matches(input_list, regex) %}
+    {{ return( adapter.dispatch('get_matches', 'dbtplyr') (input_list, regex) ) }}
+{% endmacro %}
+
+
+{% macro default__get_matches(input_list, regex) %}
 
 {% set results_list = [] %}
 {% for l in input_list %}
