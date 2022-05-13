@@ -3,7 +3,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: 'dbtplyr'
-version: '0.3.0'
+version: '0.3.1'
 config-version: 2
 require-dbt-version: ">=1.0.0"
 
@@ -13,10 +13,10 @@ profile: 'dbtplyr'
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
-source-paths: ["models"]
+model-paths: ["models"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
-data-paths: ["data"]
+seed-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
