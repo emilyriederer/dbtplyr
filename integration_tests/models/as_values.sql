@@ -1,10 +1,10 @@
-{% set cols = dbtplyr.get_column_names( ref('data') ) %}
-{% set cast_to %}
-  {% if target.type == 'postgres' %}
+{%- set cols = dbtplyr.get_column_names( ref('data') ) %}
+{%- set cast_to %}
+  {%- if target.type == 'postgres' -%}
     text
-  {% else %}
+  {%- else -%}
     string
-  {% endif %}
+  {%- endif -%}
 {% endset %}
 
 select
