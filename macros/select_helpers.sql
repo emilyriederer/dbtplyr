@@ -1,109 +1,107 @@
-{% macro starts_with(string, relation) %}
+{%- macro starts_with(string, relation) %}
     {{ return( adapter.dispatch('starts_with', 'dbtplyr') (string, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__starts_with(string, relation) %}
+{%- macro default__starts_with(string, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = "^" ~ string ~ ".*" %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = "^" ~ string ~ ".*" %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro ends_with(string, relation) %}
+{%- macro ends_with(string, relation) %}
     {{ return( adapter.dispatch('ends_with', 'dbtplyr') (string, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__ends_with(string, relation) %}
+{%- macro default__ends_with(string, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = "^.*" ~ string ~ "$" %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = "^.*" ~ string ~ "$" %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro contains(string, relation) %}
+{%- macro contains(string, relation) %}
     {{ return( adapter.dispatch('contains', 'dbtplyr') (string, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__contains(string, relation) %}
+{%- macro default__contains(string, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = "^.*" ~ string ~ ".*$" %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = "^.*" ~ string ~ ".*$" %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro not_contains(string, relation) %}
+{%- macro not_contains(string, relation) %}
     {{ return( adapter.dispatch('not_contains', 'dbtplyr') (string, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__not_contains(string, relation) %}
+{%- macro default__not_contains(string, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = "^((?!" ~ string ~ ").)*$" %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = "^((?!" ~ string ~ ").)*$" %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro one_of(strings, relation) %}
+{%- macro one_of(strings, relation) %}
     {{ return( adapter.dispatch('one_of', 'dbtplyr') (strings, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__one_of(strings, relation) %}
+{%- macro default__one_of(strings, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = "^("+ strings|join("|") +")$" %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = "^("+ strings|join("|") +")$" %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro not_one_of(strings, relation) %}
+{%- macro not_one_of(strings, relation) %}
     {{ return( adapter.dispatch('not_one_of', 'dbtplyr') (strings, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__not_one_of(strings, relation) %}
+{%- macro default__not_one_of(strings, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set results = cols | reject('in', strings) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set results = cols | reject('in', strings) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro matches(string, relation) %}
+{%- macro matches(string, relation) %}
     {{ return( adapter.dispatch('matches', 'dbtplyr') (string, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__matches(string, relation) %}
+{%- macro default__matches(string, relation) %}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{%set regex = string %}
-{%set results = dbtplyr.get_matches(cols, regex) %}
+{% set cols = dbtplyr.get_column_names(relation) %}
+{% set regex = string %}
+{% set results = dbtplyr.get_matches(cols, regex) %}
 {{return(results)}}
 
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro everything(relation) %}
+{%- macro everything(relation) -%}
     {{ return( adapter.dispatch('everything', 'dbtplyr') (relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__everything(relation) %}
+{%- macro default__everything(relation) -%}
+  {%- set cols = dbtplyr.get_column_names(relation) -%}
+  {{ return(cols) }}
+{%- endmacro -%}
 
-{%set cols = dbtplyr.get_column_names(relation) %}
-{{return(cols)}}
-
-{% endmacro %}
-
-{% macro where(fn, relation) %}
+{%- macro where(fn, relation) %}
     {{ return( adapter.dispatch('where', 'dbtplyr') (fn, relation) ) }}
-{% endmacro %}
+{%- endmacro -%}
 
-{% macro default__where(fn, relation) %}
+{%- macro default__where(fn, relation) %}
 
   {% set cols = adapter.get_columns_in_relation(relation) %}
   {% set results_list = [] %}
@@ -122,4 +120,4 @@
 
 {{return(results_list)}}
 
-{% endmacro %}
+{%- endmacro -%}
