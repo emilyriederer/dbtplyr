@@ -4,10 +4,10 @@
 
 {% macro default__if_any(var_list, script_string) %}
 
-  {% for v in var_list %}
+  {%- for v in var_list -%}
   {{ "(" ~ script_string | replace('{{var}}', v) ~ ")" }}
   {%- if not loop.last %} or {% endif %}
-  {% endfor %}
+  {%- endfor -%}
 
 {% endmacro %}
 
@@ -17,9 +17,9 @@
 
 {% macro default__if_all(var_list, script_string) %}
 
-  {% for v in var_list %}
+  {%- for v in var_list -%}
   {{ "(" ~ script_string | replace('{{var}}', v) ~ ")" }}
   {%- if not loop.last %} and {% endif %}
-  {% endfor %}
+  {%- endfor -%}
 
 {% endmacro %}
